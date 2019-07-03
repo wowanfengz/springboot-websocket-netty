@@ -19,12 +19,10 @@ public class WebsocketFrameHandler extends SimpleChannelInboundHandler<TextWebSo
     }
     @Override
     public void channelActive(ChannelHandlerContext ctx) {
-        System.out.println("与客户端建立连接，通道开启！");
     }
 
     @Override
     public void channelInactive(ChannelHandlerContext ctx) throws InvocationTargetException, IllegalAccessException {
-        System.out.println("与客户端断开连接，通道关闭！");
         pojoDoMethodHandler.doClose(ctx);
     }
 
