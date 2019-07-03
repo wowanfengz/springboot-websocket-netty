@@ -10,6 +10,7 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.codec.http.HttpObjectAggregator;
 import io.netty.handler.codec.http.HttpServerCodec;
 import io.netty.handler.codec.http.websocketx.WebSocketServerProtocolHandler;
+import org.springframework.util.StringUtils;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -33,6 +34,7 @@ public class NettyServer {
             if(!m.matches()){
                 throw new IllegalArgumentException("无效的路径,path:"+path);
             }
+            this.path = this.path.replace("{","").replace("}","").replace(this.wildcard,"");
         }catch (Exception e){
             throw new IllegalArgumentException("无效的路径,path:"+path);
         }
